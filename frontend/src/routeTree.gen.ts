@@ -19,10 +19,19 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ExamsIndexRouteImport } from './routes/exams.index'
+import { Route as InstructorIndexRouteImport } from './routes/instructor.index'
+import { Route as InstructorAnalyticsRouteImport } from './routes/instructor.analytics'
+import { Route as InstructorExamBuilderRouteImport } from './routes/instructor.exam-builder'
+import { Route as InstructorProfileRouteImport } from './routes/instructor.profile'
+import { Route as InstructorReportsRouteImport } from './routes/instructor.reports'
+import { Route as InstructorResultsRouteImport } from './routes/instructor.results'
+import { Route as InstructorSettingsRouteImport } from './routes/instructor.settings'
 import { Route as ResultsExamIdRouteImport } from './routes/results.$examId'
 import { Route as ExamsExamIdInstructionsRouteImport } from './routes/exams.$examId.instructions'
 import { Route as ExamsExamIdReviewRouteImport } from './routes/exams.$examId.review'
 import { Route as ExamsExamIdTakeRouteImport } from './routes/exams.$examId.take'
+import { Route as InstructorQuestionsIndexRouteImport } from './routes/instructor.questions.index'
+import { Route as InstructorQuestionsQuestionIdRouteImport } from './routes/instructor.questions.$questionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -74,6 +83,41 @@ const ExamsIndexRoute = ExamsIndexRouteImport.update({
   path: '/exams/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstructorIndexRoute = InstructorIndexRouteImport.update({
+  id: '/instructor/',
+  path: '/instructor/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorAnalyticsRoute = InstructorAnalyticsRouteImport.update({
+  id: '/instructor/analytics',
+  path: '/instructor/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorExamBuilderRoute = InstructorExamBuilderRouteImport.update({
+  id: '/instructor/exam-builder',
+  path: '/instructor/exam-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorProfileRoute = InstructorProfileRouteImport.update({
+  id: '/instructor/profile',
+  path: '/instructor/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorReportsRoute = InstructorReportsRouteImport.update({
+  id: '/instructor/reports',
+  path: '/instructor/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorResultsRoute = InstructorResultsRouteImport.update({
+  id: '/instructor/results',
+  path: '/instructor/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructorSettingsRoute = InstructorSettingsRouteImport.update({
+  id: '/instructor/settings',
+  path: '/instructor/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResultsExamIdRoute = ResultsExamIdRouteImport.update({
   id: '/results/$examId',
   path: '/results/$examId',
@@ -94,6 +138,18 @@ const ExamsExamIdTakeRoute = ExamsExamIdTakeRouteImport.update({
   path: '/exams/$examId/take',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstructorQuestionsIndexRoute =
+  InstructorQuestionsIndexRouteImport.update({
+    id: '/instructor/questions/',
+    path: '/instructor/questions/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstructorQuestionsQuestionIdRoute =
+  InstructorQuestionsQuestionIdRouteImport.update({
+    id: '/instructor/questions/$questionId',
+    path: '/instructor/questions/$questionId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -105,11 +161,20 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/instructor/analytics': typeof InstructorAnalyticsRoute
+  '/instructor/exam-builder': typeof InstructorExamBuilderRoute
+  '/instructor/profile': typeof InstructorProfileRoute
+  '/instructor/reports': typeof InstructorReportsRoute
+  '/instructor/results': typeof InstructorResultsRoute
+  '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
   '/exams/': typeof ExamsIndexRoute
+  '/instructor/': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
   '/exams/$examId/review': typeof ExamsExamIdReviewRoute
   '/exams/$examId/take': typeof ExamsExamIdTakeRoute
+  '/instructor/questions/$questionId': typeof InstructorQuestionsQuestionIdRoute
+  '/instructor/questions/': typeof InstructorQuestionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -121,11 +186,20 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/instructor/analytics': typeof InstructorAnalyticsRoute
+  '/instructor/exam-builder': typeof InstructorExamBuilderRoute
+  '/instructor/profile': typeof InstructorProfileRoute
+  '/instructor/reports': typeof InstructorReportsRoute
+  '/instructor/results': typeof InstructorResultsRoute
+  '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
   '/exams': typeof ExamsIndexRoute
+  '/instructor': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
   '/exams/$examId/review': typeof ExamsExamIdReviewRoute
   '/exams/$examId/take': typeof ExamsExamIdTakeRoute
+  '/instructor/questions/$questionId': typeof InstructorQuestionsQuestionIdRoute
+  '/instructor/questions': typeof InstructorQuestionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -138,11 +212,20 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/instructor/analytics': typeof InstructorAnalyticsRoute
+  '/instructor/exam-builder': typeof InstructorExamBuilderRoute
+  '/instructor/profile': typeof InstructorProfileRoute
+  '/instructor/reports': typeof InstructorReportsRoute
+  '/instructor/results': typeof InstructorResultsRoute
+  '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
   '/exams/': typeof ExamsIndexRoute
+  '/instructor/': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
   '/exams/$examId/review': typeof ExamsExamIdReviewRoute
   '/exams/$examId/take': typeof ExamsExamIdTakeRoute
+  '/instructor/questions/$questionId': typeof InstructorQuestionsQuestionIdRoute
+  '/instructor/questions/': typeof InstructorQuestionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -156,11 +239,20 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/instructor/analytics'
+    | '/instructor/exam-builder'
+    | '/instructor/profile'
+    | '/instructor/reports'
+    | '/instructor/results'
+    | '/instructor/settings'
     | '/results/$examId'
     | '/exams/'
+    | '/instructor/'
     | '/exams/$examId/instructions'
     | '/exams/$examId/review'
     | '/exams/$examId/take'
+    | '/instructor/questions/$questionId'
+    | '/instructor/questions/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -172,11 +264,20 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/instructor/analytics'
+    | '/instructor/exam-builder'
+    | '/instructor/profile'
+    | '/instructor/reports'
+    | '/instructor/results'
+    | '/instructor/settings'
     | '/results/$examId'
     | '/exams'
+    | '/instructor'
     | '/exams/$examId/instructions'
     | '/exams/$examId/review'
     | '/exams/$examId/take'
+    | '/instructor/questions/$questionId'
+    | '/instructor/questions'
   id:
     | '__root__'
     | '/'
@@ -188,11 +289,20 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/instructor/analytics'
+    | '/instructor/exam-builder'
+    | '/instructor/profile'
+    | '/instructor/reports'
+    | '/instructor/results'
+    | '/instructor/settings'
     | '/results/$examId'
     | '/exams/'
+    | '/instructor/'
     | '/exams/$examId/instructions'
     | '/exams/$examId/review'
     | '/exams/$examId/take'
+    | '/instructor/questions/$questionId'
+    | '/instructor/questions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -205,11 +315,20 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   SettingsRoute: typeof SettingsRoute
+  InstructorAnalyticsRoute: typeof InstructorAnalyticsRoute
+  InstructorExamBuilderRoute: typeof InstructorExamBuilderRoute
+  InstructorProfileRoute: typeof InstructorProfileRoute
+  InstructorReportsRoute: typeof InstructorReportsRoute
+  InstructorResultsRoute: typeof InstructorResultsRoute
+  InstructorSettingsRoute: typeof InstructorSettingsRoute
   ResultsExamIdRoute: typeof ResultsExamIdRoute
   ExamsIndexRoute: typeof ExamsIndexRoute
+  InstructorIndexRoute: typeof InstructorIndexRoute
   ExamsExamIdInstructionsRoute: typeof ExamsExamIdInstructionsRoute
   ExamsExamIdReviewRoute: typeof ExamsExamIdReviewRoute
   ExamsExamIdTakeRoute: typeof ExamsExamIdTakeRoute
+  InstructorQuestionsQuestionIdRoute: typeof InstructorQuestionsQuestionIdRoute
+  InstructorQuestionsIndexRoute: typeof InstructorQuestionsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -284,6 +403,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/instructor/': {
+      id: '/instructor/'
+      path: '/instructor'
+      fullPath: '/instructor/'
+      preLoaderRoute: typeof InstructorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/analytics': {
+      id: '/instructor/analytics'
+      path: '/instructor/analytics'
+      fullPath: '/instructor/analytics'
+      preLoaderRoute: typeof InstructorAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/exam-builder': {
+      id: '/instructor/exam-builder'
+      path: '/instructor/exam-builder'
+      fullPath: '/instructor/exam-builder'
+      preLoaderRoute: typeof InstructorExamBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/profile': {
+      id: '/instructor/profile'
+      path: '/instructor/profile'
+      fullPath: '/instructor/profile'
+      preLoaderRoute: typeof InstructorProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/reports': {
+      id: '/instructor/reports'
+      path: '/instructor/reports'
+      fullPath: '/instructor/reports'
+      preLoaderRoute: typeof InstructorReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/results': {
+      id: '/instructor/results'
+      path: '/instructor/results'
+      fullPath: '/instructor/results'
+      preLoaderRoute: typeof InstructorResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/settings': {
+      id: '/instructor/settings'
+      path: '/instructor/settings'
+      fullPath: '/instructor/settings'
+      preLoaderRoute: typeof InstructorSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/results/$examId': {
       id: '/results/$examId'
       path: '/results/$examId'
@@ -312,6 +480,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamsExamIdTakeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/instructor/questions/': {
+      id: '/instructor/questions/'
+      path: '/instructor/questions'
+      fullPath: '/instructor/questions/'
+      preLoaderRoute: typeof InstructorQuestionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructor/questions/$questionId': {
+      id: '/instructor/questions/$questionId'
+      path: '/instructor/questions/$questionId'
+      fullPath: '/instructor/questions/$questionId'
+      preLoaderRoute: typeof InstructorQuestionsQuestionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -325,22 +507,21 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   SettingsRoute: SettingsRoute,
+  InstructorAnalyticsRoute: InstructorAnalyticsRoute,
+  InstructorExamBuilderRoute: InstructorExamBuilderRoute,
+  InstructorProfileRoute: InstructorProfileRoute,
+  InstructorReportsRoute: InstructorReportsRoute,
+  InstructorResultsRoute: InstructorResultsRoute,
+  InstructorSettingsRoute: InstructorSettingsRoute,
   ResultsExamIdRoute: ResultsExamIdRoute,
   ExamsIndexRoute: ExamsIndexRoute,
+  InstructorIndexRoute: InstructorIndexRoute,
   ExamsExamIdInstructionsRoute: ExamsExamIdInstructionsRoute,
   ExamsExamIdReviewRoute: ExamsExamIdReviewRoute,
   ExamsExamIdTakeRoute: ExamsExamIdTakeRoute,
+  InstructorQuestionsQuestionIdRoute: InstructorQuestionsQuestionIdRoute,
+  InstructorQuestionsIndexRoute: InstructorQuestionsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

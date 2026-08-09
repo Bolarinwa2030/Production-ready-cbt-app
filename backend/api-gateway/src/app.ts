@@ -1,11 +1,17 @@
 import Fastify from "fastify";
+import { healthRoute } from "./routes/health.js";
+import { loggerPlugin } from "./plugins/logger.js";
+import { requestIdMiddleware } from "./middleware/request-id.js";
 
 export function buildApp() {
-    const app = Fastify({
-        logger:true,
-    })
-};
+  const app = Fastify({
+    logger: true,
+  });
 
-// Register routes here
+   
+  app.register(requestIdMiddleware);
+  app.register(loggerPlugin);
+  app.register(healthRoute);
 
-app.get("/health", async () => )
+  return  app;
+}

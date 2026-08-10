@@ -18,6 +18,13 @@ import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAuditLogsRouteImport } from './routes/admin.audit-logs'
+import { Route as AdminInstitutionsRouteImport } from './routes/admin.institutions'
+import { Route as AdminMonitoringRouteImport } from './routes/admin.monitoring'
+import { Route as AdminRolesRouteImport } from './routes/admin.roles'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as ExamsIndexRouteImport } from './routes/exams.index'
 import { Route as InstructorIndexRouteImport } from './routes/instructor.index'
 import { Route as InstructorAnalyticsRouteImport } from './routes/instructor.analytics'
@@ -76,6 +83,41 @@ const RegisterRoute = RegisterRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuditLogsRoute = AdminAuditLogsRouteImport.update({
+  id: '/admin/audit-logs',
+  path: '/admin/audit-logs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminInstitutionsRoute = AdminInstitutionsRouteImport.update({
+  id: '/admin/institutions',
+  path: '/admin/institutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMonitoringRoute = AdminMonitoringRouteImport.update({
+  id: '/admin/monitoring',
+  path: '/admin/monitoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRolesRoute = AdminRolesRouteImport.update({
+  id: '/admin/roles',
+  path: '/admin/roles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExamsIndexRoute = ExamsIndexRouteImport.update({
@@ -161,6 +203,12 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/institutions': typeof AdminInstitutionsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/instructor/analytics': typeof InstructorAnalyticsRoute
   '/instructor/exam-builder': typeof InstructorExamBuilderRoute
   '/instructor/profile': typeof InstructorProfileRoute
@@ -168,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/instructor/results': typeof InstructorResultsRoute
   '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/exams/': typeof ExamsIndexRoute
   '/instructor/': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
@@ -186,6 +235,12 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/institutions': typeof AdminInstitutionsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/instructor/analytics': typeof InstructorAnalyticsRoute
   '/instructor/exam-builder': typeof InstructorExamBuilderRoute
   '/instructor/profile': typeof InstructorProfileRoute
@@ -193,6 +248,7 @@ export interface FileRoutesByTo {
   '/instructor/results': typeof InstructorResultsRoute
   '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
+  '/admin': typeof AdminIndexRoute
   '/exams': typeof ExamsIndexRoute
   '/instructor': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
@@ -212,6 +268,12 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/institutions': typeof AdminInstitutionsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/instructor/analytics': typeof InstructorAnalyticsRoute
   '/instructor/exam-builder': typeof InstructorExamBuilderRoute
   '/instructor/profile': typeof InstructorProfileRoute
@@ -219,6 +281,7 @@ export interface FileRoutesById {
   '/instructor/results': typeof InstructorResultsRoute
   '/instructor/settings': typeof InstructorSettingsRoute
   '/results/$examId': typeof ResultsExamIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/exams/': typeof ExamsIndexRoute
   '/instructor/': typeof InstructorIndexRoute
   '/exams/$examId/instructions': typeof ExamsExamIdInstructionsRoute
@@ -239,6 +302,12 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/admin/audit-logs'
+    | '/admin/institutions'
+    | '/admin/monitoring'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
     | '/instructor/analytics'
     | '/instructor/exam-builder'
     | '/instructor/profile'
@@ -246,6 +315,7 @@ export interface FileRouteTypes {
     | '/instructor/results'
     | '/instructor/settings'
     | '/results/$examId'
+    | '/admin/'
     | '/exams/'
     | '/instructor/'
     | '/exams/$examId/instructions'
@@ -264,6 +334,12 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/admin/audit-logs'
+    | '/admin/institutions'
+    | '/admin/monitoring'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
     | '/instructor/analytics'
     | '/instructor/exam-builder'
     | '/instructor/profile'
@@ -271,6 +347,7 @@ export interface FileRouteTypes {
     | '/instructor/results'
     | '/instructor/settings'
     | '/results/$examId'
+    | '/admin'
     | '/exams'
     | '/instructor'
     | '/exams/$examId/instructions'
@@ -289,6 +366,12 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/settings'
+    | '/admin/audit-logs'
+    | '/admin/institutions'
+    | '/admin/monitoring'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
     | '/instructor/analytics'
     | '/instructor/exam-builder'
     | '/instructor/profile'
@@ -296,6 +379,7 @@ export interface FileRouteTypes {
     | '/instructor/results'
     | '/instructor/settings'
     | '/results/$examId'
+    | '/admin/'
     | '/exams/'
     | '/instructor/'
     | '/exams/$examId/instructions'
@@ -315,6 +399,12 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   SettingsRoute: typeof SettingsRoute
+  AdminAuditLogsRoute: typeof AdminAuditLogsRoute
+  AdminInstitutionsRoute: typeof AdminInstitutionsRoute
+  AdminMonitoringRoute: typeof AdminMonitoringRoute
+  AdminRolesRoute: typeof AdminRolesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   InstructorAnalyticsRoute: typeof InstructorAnalyticsRoute
   InstructorExamBuilderRoute: typeof InstructorExamBuilderRoute
   InstructorProfileRoute: typeof InstructorProfileRoute
@@ -322,6 +412,7 @@ export interface RootRouteChildren {
   InstructorResultsRoute: typeof InstructorResultsRoute
   InstructorSettingsRoute: typeof InstructorSettingsRoute
   ResultsExamIdRoute: typeof ResultsExamIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   ExamsIndexRoute: typeof ExamsIndexRoute
   InstructorIndexRoute: typeof InstructorIndexRoute
   ExamsExamIdInstructionsRoute: typeof ExamsExamIdInstructionsRoute
@@ -394,6 +485,55 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/audit-logs': {
+      id: '/admin/audit-logs'
+      path: '/admin/audit-logs'
+      fullPath: '/admin/audit-logs'
+      preLoaderRoute: typeof AdminAuditLogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/institutions': {
+      id: '/admin/institutions'
+      path: '/admin/institutions'
+      fullPath: '/admin/institutions'
+      preLoaderRoute: typeof AdminInstitutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/monitoring': {
+      id: '/admin/monitoring'
+      path: '/admin/monitoring'
+      fullPath: '/admin/monitoring'
+      preLoaderRoute: typeof AdminMonitoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/roles': {
+      id: '/admin/roles'
+      path: '/admin/roles'
+      fullPath: '/admin/roles'
+      preLoaderRoute: typeof AdminRolesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/exams/': {
@@ -507,6 +647,12 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   SettingsRoute: SettingsRoute,
+  AdminAuditLogsRoute: AdminAuditLogsRoute,
+  AdminInstitutionsRoute: AdminInstitutionsRoute,
+  AdminMonitoringRoute: AdminMonitoringRoute,
+  AdminRolesRoute: AdminRolesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
   InstructorAnalyticsRoute: InstructorAnalyticsRoute,
   InstructorExamBuilderRoute: InstructorExamBuilderRoute,
   InstructorProfileRoute: InstructorProfileRoute,
@@ -514,6 +660,7 @@ const rootRouteChildren: RootRouteChildren = {
   InstructorResultsRoute: InstructorResultsRoute,
   InstructorSettingsRoute: InstructorSettingsRoute,
   ResultsExamIdRoute: ResultsExamIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
   ExamsIndexRoute: ExamsIndexRoute,
   InstructorIndexRoute: InstructorIndexRoute,
   ExamsExamIdInstructionsRoute: ExamsExamIdInstructionsRoute,

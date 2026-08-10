@@ -1,11 +1,18 @@
 import { FastifyInstance } from "fastify";
+import { env } from "../config/env.js";
+import { proxyRequest } from "../proxy/service-proxy.js";
 
 export async function authRoute(app: FastifyInstance) {
-    
-    app.all("/api/auth/*", async (request, reply) => {
-        return reply.send({
-            route: "auth-service",
-            path: request.url,
-        });
-    });
+  app.all("/api/auth/*", async (request, reply) => {
+    const response = await proxyRequest(
+      request,
+      env.AUTH_SERVICE_URL,
+    );
+
+    const body = await response.text();
+
+    return reply
+      .code(response.status)
+      .send(body);
+  });
 }

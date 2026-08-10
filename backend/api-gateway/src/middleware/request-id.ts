@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import fp from "fastify-plugin";
 import { FastifyInstance } from "fastify";
 
 declare module "fastify" {
@@ -7,10 +8,12 @@ declare module "fastify" {
   }
 }
 
-export async function requestIdMiddleware(app: FastifyInstance) {
+async function requestIdMiddleware(app: FastifyInstance) {
   app.decorateRequest("correlationId", "");
 
   app.addHook("onRequest", async (request, reply) => {
+    console.log("🔥 CORRELATION MIDDLEWARE EXECUTED");
+
     const incomingId = request.headers["x-correlation-id"];
 
     const correlationId =
@@ -23,3 +26,5 @@ export async function requestIdMiddleware(app: FastifyInstance) {
     reply.header("X-Correlation-ID", correlationId);
   });
 }
+
+export default fp(requestIdMiddleware);

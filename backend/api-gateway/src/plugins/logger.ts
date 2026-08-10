@@ -1,12 +1,11 @@
+import fp from "fastify-plugin";
 import { FastifyInstance } from "fastify";
 
-export async function loggerPlugin(app: FastifyInstance) {
+async function loggerPlugin(app: FastifyInstance) {
   app.addHook("onRequest", async (request) => {
-    const correlationId = request.correlationId;
-
     request.log.info(
       {
-        correlationId,
+        correlationId: request.correlationId,
         method: request.method,
         url: request.url,
       },
@@ -15,11 +14,9 @@ export async function loggerPlugin(app: FastifyInstance) {
   });
 
   app.addHook("onResponse", async (request, reply) => {
-    const correlationId = request.correlationId;
-
     request.log.info(
       {
-        correlationId,
+        correlationId: request.correlationId,
         method: request.method,
         url: request.url,
         statusCode: reply.statusCode,
@@ -28,3 +25,5 @@ export async function loggerPlugin(app: FastifyInstance) {
     );
   });
 }
+
+export default fp(loggerPlugin);

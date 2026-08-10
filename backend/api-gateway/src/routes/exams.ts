@@ -3,7 +3,7 @@ import { env } from "../config/env.js";
 import { proxyRequest } from "../proxy/service-proxy.js";
 
 export async function examRoute(app: FastifyInstance) {
-  app.all("/api/exams/*", async (request, reply) => {
+  const handler = async (request: any, reply: any) => {
     const response = await proxyRequest(
       request,
       env.EXAM_SERVICE_URL,
@@ -14,5 +14,8 @@ export async function examRoute(app: FastifyInstance) {
     return reply
       .code(response.status)
       .send(body);
-  });
+  };
+
+  app.all("/api/exams", handler);
+  app.all("/api/exams/*", handler);
 }

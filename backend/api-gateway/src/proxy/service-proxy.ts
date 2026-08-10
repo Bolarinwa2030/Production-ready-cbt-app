@@ -4,9 +4,8 @@ export async function proxyRequest(
   request: FastifyRequest,
   targetUrl: string,
 ) {
-  const url = new URL(request.url);
 
-  const target = `${targetUrl}${url.pathname}${url.search}`;
+  const target = `${targetUrl}${request.url}`;
 
   const headers = new Headers();
 

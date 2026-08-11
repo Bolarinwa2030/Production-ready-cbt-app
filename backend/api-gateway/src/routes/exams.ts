@@ -4,16 +4,27 @@ import { proxyRequest } from "../proxy/service-proxy.js";
 
 export async function examRoute(app: FastifyInstance) {
   const handler = async (request: any, reply: any) => {
-    const response = await proxyRequest(
-      request,
-      env.EXAM_SERVICE_URL,
-    );
+    try {
+      const response = await proxyRequest(
+        request,
+        env.EXAM_SERVICE_URL,
+      );
 
-    const body = await response.text();
+      const body = await response.text();
 
-    return reply
-      .code(response.status)
-      .send(body);
+      return reply
+        .code(response.status)
+        .send(body);
+    } catch (error) {
+      request.log.error(
+        { error },
+        "Exam service unavailable",
+      );
+
+      return reply.code(503).send({
+        error: "Exam service unavailable",
+      });
+    }
   };
 
   app.all("/api/exams", handler);

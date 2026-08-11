@@ -4,15 +4,26 @@ import { proxyRequest } from "../proxy/service-proxy.js";
 
 export async function authRoute(app: FastifyInstance) {
   app.all("/api/auth/*", async (request, reply) => {
-    const response = await proxyRequest(
-      request,
-      env.AUTH_SERVICE_URL,
-    );
+    try {
+      const response = await proxyRequest(
+        request,
+        env.AUTH_SERVICE_URL,
+      );
 
-    const body = await response.text();
+      const body = await response.text();
 
-    return reply
-      .code(response.status)
-      .send(body);
+      return reply
+        .code(response.status)
+        .send(body);
+    } catch (error) {
+      request.log.error(
+        { error },
+        "Auth service unavailable",
+      );
+
+      return reply.code(503).send({
+        error: "Auth service unavailable",
+      });
+    }
   });
 }

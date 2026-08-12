@@ -7,15 +7,21 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate": "node-pg-migrate",
+    "migrate:up": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
     "fastify": "^5.0.0",
+    "pg": "^8.23.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
+    "@types/pg": "^8.21.0",
+    "node-pg-migrate": "^9.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   }

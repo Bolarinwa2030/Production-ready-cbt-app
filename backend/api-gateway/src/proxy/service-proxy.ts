@@ -15,7 +15,7 @@ export async function proxyRequest(
   }
 
   try {
-    const response = await fetch(target, {
+    return await fetch(target, {
       method: request.method,
       headers,
       body:
@@ -23,8 +23,6 @@ export async function proxyRequest(
           ? undefined
           : JSON.stringify(request.body),
     });
-
-    return response;
   } catch (error) {
     request.log.error(
       {

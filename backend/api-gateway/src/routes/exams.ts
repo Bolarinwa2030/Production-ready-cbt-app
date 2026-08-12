@@ -12,6 +12,10 @@ export async function examRoute(app: FastifyInstance) {
 
       const body = await response.text();
 
+      response.headers.forEach((value, key) => {
+        reply.header(key, value);
+      });
+
       return reply
         .code(response.status)
         .send(body);

@@ -1,18 +1,24 @@
-/**
- * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
- */
-export const shorthands = undefined;
+exports.up = (pgm) => {
+    pgm.createTable("audit_logs", {
+        id: {
+            type: "uuid",
+            primaryKey: true,
+            default: pgm.func("gen_random_uuid()",)
+        },
 
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
-export const up = (pgm) => {};
+        institution_id:{
+            type: "uuid",
+            notNull: true,
+            references: "institution(id)",
+            onDelete: "CASCADE",
+        },
 
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
-export const down = (pgm) => {};
+        actor_user_id:{
+            type: "uuid",
+            notNull: true,
+            references: "users(id)",
+            onDelete: "CASCADE",
+        },
+
+    })
+}
